@@ -30,19 +30,29 @@ import toggle_button
 # Default toggle button with 32 height, and blue color as the active color
 widget = toggle_button.ToggleButton()
 widget.show()
+```
+![alt text](https://github.com/sartikadelly/ios-togglebutton-for-maya/blob/master/screenshots/toggle_example_01.png "Toggle Button Example 01")
 
+```python
+import toggle_button
 widget = toggle_button.ToggleButton(width=100, colorActive=toggle_button.RED)
 widget.show()
+```
 
-widget = toggle_button.ToggleButton(height=20, colorActive=toggle_button.QtGui.QColor('#8BC34A'))
+```python
+import toggle_button
+widget = toggle_button.ToggleButton(height=20, colorActive=toggle_button.QtGui.QColor('#8BC34A'),
+                                    colorInactive=toggle_button.QtGui.QColor('#FF9800'))
 widget.show()
+```
 
+```python
+import toggle_button
 # A Square Toggle Button with custom size & colors
-widget = toggle_button.ToggleButton(width=60, height=20,
-                                    colorActive=toggle_button.QtGui.QColor(0,229,255),
-                                    colorInactive=toggle_button.RED,
-                                    colorSwitch=toggle_button.PINK,
+widget = toggle_button.ToggleButton(width=100, height=40,
+                                    colorActive=toggle_button.QtGui.QColor(149,117,205),
+                                    colorInactive=toggle_button.QtGui.QColor(77,182,172),
+                                    colorSwitch=toggle_button.QtGui.QColor(240,244,195),
                                     roundedCorner=False)
 widget.show()
-
 ```
