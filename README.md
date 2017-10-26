@@ -2,6 +2,7 @@
 iOS Toggle Button Style for Autodesk Maya (2014, 2016, 2017, 2018), using PySide / PySide2 (Python for Qt)
 
 ## Class
+Inherited from QWidget
 ```python
 class ToggleButton(parent=None,
                    width=None, height=None,
