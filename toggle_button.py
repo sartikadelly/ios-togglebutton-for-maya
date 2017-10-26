@@ -1,6 +1,8 @@
 '''
 module: toggle_button
 iOS Style Toggle Button for Autodesk Maya (2014, 2016, 2017, 2018) using PySide / PySide2
+
+https://github.com/sartikadelly/ios-togglebutton-for-maya
 '''
 try:
     from PySide2 import QtGui, QtCore, QtWidgets
