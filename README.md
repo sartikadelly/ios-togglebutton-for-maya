@@ -2,8 +2,10 @@
 iOS Toggle Button Style for Autodesk Maya (2014, 2016, 2017, 2018), using PySide / PySide2 (Python for Qt)
 
 ## Class
-Inherited from QWidget
+Inherited from *QtWidgets.QWidget*
 ```python
+class ToggleButton(QtWidgets.QWidget)
+
 class ToggleButton(parent=None,
                    width=None, height=None,
                    colorSwitch=WHITE,
@@ -22,6 +24,11 @@ QColor | colorSwitch | Switch color.
 QColor | colorActive | Background color when Toggle Button is active.
 QColor | colorInctive | Background color when Toggle Button is inactive.
 bool | roundedCorner | Rounded / Square corner style.
+
+### Properties
+Type | Name | Description
+--- | --- | ---
+bool | state | Toggle button state
 
 ## Example Usage
 ```python
