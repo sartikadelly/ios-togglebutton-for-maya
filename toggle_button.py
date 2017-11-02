@@ -25,7 +25,7 @@ WHITE = QtGui.QColor(255, 255, 255)
 YELLOW = QtGui.QColor(255, 204, 0)
 
 #------------------------------------------------------------------------------
-class BackgroundWithColor(QtWidgets.QLabel):
+class BackgroundWithColor(QtWidgets.QPushButton):
     '''
     Simple Background Color Class with color property that can be animated.
 
@@ -33,8 +33,8 @@ class BackgroundWithColor(QtWidgets.QLabel):
     :param QColor color: Background color
     :param bool roundedCorner: Rounded/Square corner
     '''
-    def __init__(self, height=32, color=GRAY, roundedCorner=True):
-        super(BackgroundWithColor, self).__init__()
+    def __init__(self, parent=None, height=32, color=GRAY, roundedCorner=True):
+        super(BackgroundWithColor, self).__init__(parent)
         self.border_radius = int(height * 0.5) if roundedCorner else 0
         self._color = color
         self.setColor(self._color)
@@ -65,6 +65,8 @@ class ToggleButton(QtWidgets.QWidget):
     :param QColor colorInctive: Background color when Toggle Button is inactive.
     :param bool roundedCorner: Rounded/square corner style.
     '''
+    clicked = QtCore.Signal(bool)
+
     def __init__(self, parent=None,
                  width=None, height=None,
                  colorSwitch=WHITE,
@@ -73,6 +75,8 @@ class ToggleButton(QtWidgets.QWidget):
                  roundedCorner = True):
 
         super(ToggleButton, self).__init__(parent)
+        hbox = QtWidgets.QHBoxLayout(parent)
+        self.setLayout(hbox)
 
         if not any([width, height]):
             height = 32
@@ -88,12 +92,10 @@ class ToggleButton(QtWidgets.QWidget):
         self.border_radius = int(height * 0.5) if roundedCorner else 0
         self.padding = int(0.125 * height)
 
-        hbox = QtWidgets.QHBoxLayout()
-        self.setLayout(hbox)
-
-        self.toggle_bg = BackgroundWithColor(height=height, color=self.colorInactive, roundedCorner=roundedCorner)
+        self.toggle_bg = BackgroundWithColor(parent=self, height=height, color=self.colorInactive, roundedCorner=roundedCorner)
         self.toggle_bg.setFixedSize(width, height)
-        self.toggle_bg.mousePressEvent = self._doToggle
+        self.setFixedSize(width, height)
+        self.toggle_bg.clicked.connect(self._doToggle)
 
         switch_width = height - (self.padding * 2)
         switch_border_radius = int(switch_width * 0.5) if roundedCorner else 0
@@ -105,6 +107,7 @@ class ToggleButton(QtWidgets.QWidget):
 
         hbox.addWidget(self.toggle_bg)
         hbox.setContentsMargins(0, 0, 0, 0)
+        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
 
     @property
     def state(self):
@@ -138,8 +141,9 @@ class ToggleButton(QtWidgets.QWidget):
         self.animbg.setEndValue(endColor)
         self.animbg.start(QtCore.QAbstractAnimation.DeleteWhenStopped)
 
-    def _doToggle(self, event):
+    def _doToggle(self):
         self._state = not self._state
+        self.clicked.emit(self._state)
         if self._state:
             self._doToggleAnim(self.padding, self.toggle_bg.width()-self.toggle_switch.width()-self.padding,
                                self.colorInactive, self.colorActive)
