@@ -107,7 +107,6 @@ class ToggleButton(QtWidgets.QWidget):
 
         hbox.addWidget(self.toggle_bg)
         hbox.setContentsMargins(0, 0, 0, 0)
-        self.setAttribute(QtCore.Qt.WA_DeleteOnClose)
 
     @property
     def state(self):
