@@ -33,28 +33,27 @@ bool | state | Toggle button state
 ### Signal
 | Name | Description
 --- | ---
-clicked(bool) | Called when toggle button is clicked
+clicked(*bool*) | Called when toggle button is clicked
 
 ## Example Usage
 ```python
 import toggle_button
 
+def print_me(state):
+  print 'Toggle State: ', state
+
 # Default toggle button with 32 height, and blue color as the active color
 widget = toggle_button.ToggleButton()
 widget.show()
+widget.clicked.connect(print_me)
 ```
 ![alt text](https://github.com/sartikadelly/ios-togglebutton-for-maya/blob/master/screenshots/toggle_example_01.png "Toggle Button Example 01")
 
 ```python
 import toggle_button
 
-def print_me(state):
-  print 'Toggle Clicked ', state
-  
 widget = toggle_button.ToggleButton(width=100, colorActive=toggle_button.RED)
 widget.show()
-
-widget.clicked.connect(print_me)
 ```
 ![alt text](https://github.com/sartikadelly/ios-togglebutton-for-maya/blob/master/screenshots/toggle_example_02.png "Toggle Button Example 02")
 
