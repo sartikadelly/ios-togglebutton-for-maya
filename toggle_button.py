@@ -128,13 +128,13 @@ class ToggleButton(QtWidgets.QWidget):
         widget.setStyleSheet(css)
 
     def _doToggleAnim(self, xStart, xEnd, startColor, endColor):
-        self.anim = QtCore.QPropertyAnimation(self.toggle_switch, 'pos')
+        self.anim = QtCore.QPropertyAnimation(self.toggle_switch, b'pos')
         self.anim.setDuration(100)
         self.anim.setStartValue(QtCore.QPoint(xStart, self.padding))
         self.anim.setEndValue(QtCore.QPoint(xEnd, self.padding))
         self.anim.start(QtCore.QAbstractAnimation.DeleteWhenStopped)
 
-        self.animbg = QtCore.QPropertyAnimation(self.toggle_bg, 'color')
+        self.animbg = QtCore.QPropertyAnimation(self.toggle_bg, b'color')
         self.animbg.setDuration(200)
         self.animbg.setStartValue(startColor)
         self.animbg.setEndValue(endColor)
